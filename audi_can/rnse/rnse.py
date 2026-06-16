@@ -4,7 +4,6 @@ import time
 
 from audi_can.bus import CANBus
 from audi_can.rnse import constants
-from audi_can.rnse.constants import RNSEButtonEvent
 
 
 class RNSE:
@@ -31,7 +30,7 @@ class RNSE:
             self._tv_task.stop()
             self._tv_task = None
 
-    def listen_buttons(self, timeout: float = 0.25, debounce_seconds: float = 0.70, show_unknown: bool = False) -> RNSEButtonEvent | str | None:
+    def listen_buttons(self, timeout: float = 0.25, debounce_seconds: float = 0.70, show_unknown: bool = False) -> constants.RNSEButtonEvent | str | None:
         msg = self.bus.recv(timeout=timeout)
 
         if msg is None:

@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum
 
+from audi_can.constants import ButtonDefinition
+
 
 TV_CAN_ID = 0x602
 BUTTON_CAN_ID = 0x461
@@ -43,17 +45,6 @@ class RNSEButtonEvent(Enum):
     SETUP_LONG = "setup_long"
     SETUP_VERY_LONG = "setup_very_long"
 
-@dataclass(frozen=True)
-class ButtonDefinition:
-    name: str
-    press_frame: str
-    release_frame: str
-    short_event: RNSEButtonEvent
-    long_event: RNSEButtonEvent
-    very_long_event: RNSEButtonEvent
-    long_threshold: int
-    very_long_threshold: int
-
 
 ROTARY_ENCODER: dict[str, RNSEButtonEvent] = {
     "373001004001": RNSEButtonEvent.SCROLL_LEFT,
@@ -64,7 +55,6 @@ ROTARY_ENCODER: dict[str, RNSEButtonEvent] = {
     "373004002000": RNSEButtonEvent.SCROLL_RIGHT,
     "377004002000": RNSEButtonEvent.SCROLL_RIGHT,
 }
-
 
 BUTTONS: dict[str, ButtonDefinition] = {
     "up": ButtonDefinition(
