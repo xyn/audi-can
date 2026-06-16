@@ -1,0 +1,18 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "audi-can"
+version = "0.0.1"
+description = "Python library that interacts with different parts of Audi vehicles over the CANbus"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "Apache-2.0"
+
+dependencies = [
+  "python-can>=4.4"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["audi_can"]
