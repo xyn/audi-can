@@ -5,6 +5,8 @@ from audi_can.rnse.constants import RNSEButtonEvent
 comfort_can = CANBus("can0")
 rnse = RNSE(comfort_can)
 
+
+
 try:
     rnse.enable_tv_mode()
 
@@ -13,13 +15,14 @@ try:
 
         match event:
             case RNSEButtonEvent.SCROLL_LEFT:
-                print("Scroll left")
+                print("RNSE: Scroll left")
             case RNSEButtonEvent.SCROLL_RIGHT:
-                print("Scroll right")
+                print("RNSE: Scroll right")
             case RNSEButtonEvent.SELECT_SHORT:
-                print("Select short")
+                print("RNSE: Select short")
             case _:
-                pass
+                if event is not None:
+                    print(event)
 
 except KeyboardInterrupt:
     print('Disabling TV Mode and shutting down comfort can')
